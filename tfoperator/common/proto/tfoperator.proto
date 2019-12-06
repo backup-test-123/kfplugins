@@ -2,24 +2,14 @@ syntax = "proto3";
 
 package flyte.plugins.tfoperator;
 
-option go_package = "github.com/swiftdiaries/tfoperatorplugin/common/proto";
+option go_package = "github.com/flyteorg/kfplugins/tfoperator/common/proto";
 
 // Optional Proto for TFOperatorPlugin
 message TFOperatorPluginTask {
-// TODO any additional information that should be passed through https://github.com/lyft/flyteidl/blob/master/protos/flyteidl/core/tasks.proto#L102 but is not already encapsulated in the https://github.com/lyft/flyteidl/blob/master/protos/flyteidl/core/tasks.proto#L83-L110
-// For Example, the TaskTemplate contains the Container information. The container contains the command to be executed etc. The container also contains cpu, memory requirements.
-// But if additional information is needed then it can be passed in this proto, an example would be Spark Plugin in Flyte. The user needs to pass additional configuration for Spark or Hadoop drivers,
-// which is not covered in the TaskTemplate, so the Spark plugin definition encapsulates this
 }
 
-message TFApplication {
-    enum Type {
-        PYTHON = 0;
-    }
-}
-
+// TODO(swiftdiaries):: add resource (CPUs, Memory) requirements and accelerator (GPU) requirements 
 message TFJob {
-    TFApplication.Type applicationType = 1;
     string image = 2;
     int32 replicas = 3;
     map<string, string> args = 4;
