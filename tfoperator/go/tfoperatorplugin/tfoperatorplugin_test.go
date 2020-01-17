@@ -1,4 +1,4 @@
-package exampleplugin
+package tfoperatorplugin
 
 import (
 	"testing"

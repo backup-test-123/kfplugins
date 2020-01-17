@@ -14,4 +14,7 @@ message TFJob {
     int32 replicas = 3;
     map<string, string> args = 4;
     string volumeClaimName = 5;
+    // int32 cpu = 6;
+    // int32 memory = 7;
+    // int32 gpu = 8;
 }

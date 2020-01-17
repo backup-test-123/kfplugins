@@ -5,6 +5,7 @@ go 1.13
 require (
 	github.com/flyteorg/flytepluginexample v0.0.0-20191123001225-b713d77b78da
 	github.com/golang/protobuf v1.3.2
+	github.com/kubeflow/common v0.0.0-20200116014622-88a0cd071cf1
 	github.com/kubeflow/tf-operator v0.5.3
 	github.com/lyft/flyteplugins v0.2.2
 	github.com/lyft/flytepropeller v0.1.13
