@@ -10,7 +10,7 @@ jobs:
     - uses: engineerd/setup-kind@v0.3.0
       with:
         name: "kf-flyte"
-        version: "v0.7.1"
+        version: "v0.7.0"
         config: "kind/kind-config.yaml"
     
     - name: KinD Cluster Check
