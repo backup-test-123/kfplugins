@@ -1,16 +1,16 @@
 from __future__ import absolute_import
 
 from setuptools import setup, find_packages  # noqa
-import flyteexampleplugin
+import tfoperatorplugin
 
 setup(
-    name='flyteexampleplugin',
+    name='tfoperatorplugin',
     version=flyteexampleplugin.__version__,
-    maintainer='AWS + Flyte team',
-    maintainer_email='ketan.umare@gmail.com',
+    maintainer='Adhita Selvaraj <adhita.selvaraj@gmail.com>',
+    maintainer_email='adhita.selvaraj@gmail.com',
     packages=find_packages(exclude=["tests*"]),
-    url='https://github.com/kumare3/awsflyteplugins',
-    description='FlyteKit Example plugin',
+    url='https://github.com/flyteorg/kfplugins/tfoperator',
+    description='TF Operator plugin',
     long_description=open('README.md').read(),
     entry_points={
         'console_scripts': [

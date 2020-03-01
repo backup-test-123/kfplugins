@@ -34,7 +34,7 @@ test_unit_cover:
 	@go test ./... -coverprofile /tmp/cover.out -covermode=count; go tool cover -func /tmp/cover.out
 
 
-export IMAGE_NAME=awsdemoplugin
+export IMAGE_NAME=tfoperatorplugin
 PROJECT=aws
 DOMAIN=development
 VERSION=$(shell git rev-parse HEAD)

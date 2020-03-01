@@ -1,4 +1,4 @@
-package tfoperatorplugin
+package tfplugin
 
 import (
 	"context"
@@ -18,7 +18,7 @@ import (
 	tfOp "github.com/kubeflow/tf-operator/pkg/apis/tensorflow/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/swiftdiaries/tfoperatorplugin/gen/pb-go/proto"
+	"github.com/flyteorg/kfplugins/tfoperator/gen/pb-go/proto"
 )
 
 const (
@@ -124,6 +124,26 @@ func (m tfOperatorPlugin) GetTaskPhase(ctx context.Context, pluginContext k8s.Pl
 	if err != nil {
 		return pluginsCore.PhaseInfoUndefined, err
 	}
+
+	occurredAt := time.Now()
+	for _, condition := range app.Status.Conditions {
+		if hasCondition(app.Status, commonOp.JobSucceeded) {
+			return pluginsCore.PhaseInfoSuccess(info), nil
+		} else if hasCondition(app.Status, commonOp.JobRunning) {
+			return pluginsCore.PhaseInfoRunning(info), nil
+		} else if hasConiditon(app.Status, commonOp.JobFailed) {
+			return pluginsCore.PhaseInfoFailure(500, "Internal Failure", info)
+		}
+	}
+}
+
+func hasCondition(status commonOp.JobStatus, conditionType commonOp.JobConditionType) bool {
+	for _, condition := range status.Conditions {
+		if condition.Type == conditionType && condition.Status == v1.ConditionTrue {
+			return true
+		}
+	}
+	return false
 }
 
 func init() {
@@ -134,7 +154,6 @@ func init() {
 		k8s.PluginEntry{
 			ID:                  tfJobTaskType,
 			RegisteredTaskTypes: []pluginsCore.TaskType{tfJobTaskType},
-			// TODO Type of the k8s resource, e.g. Pod
 			ResourceToWatch: &tfOp.TFJob{},
 			Plugin:          tfOperatorPlugin{},
 			IsDefault:       false,

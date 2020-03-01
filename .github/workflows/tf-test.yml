@@ -1,0 +1,23 @@
+name: "Test tfoperator plugin using KinD"
+on: [pull_request, push]
+
+jobs:
+  kind:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - uses: engineerd/setup-kind@v0.3.0
+      with:
+        name: "kf-flyte"
+        version: "v0.7.1"
+        config: "kind/kind-config.yaml"
+    
+    - name: KinD Cluster Check
+      run: |
+        kubectl cluster-info
+        kubectl get pods -n kube-system
+    
+    # TODO(swiftdiaries): Add install step for KF Operators and Flyte
+    # - name: Install KF-Flyte
+    #   run:
