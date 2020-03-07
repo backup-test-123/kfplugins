@@ -409,504 +409,24 @@ public final class Tfoperator {
 
   }
 
-  public interface TFApplicationOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:flyte.plugins.tfoperator.TFApplication)
-      com.google.protobuf.MessageOrBuilder {
-  }
-  /**
-   * Protobuf type {@code flyte.plugins.tfoperator.TFApplication}
-   */
-  public  static final class TFApplication extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:flyte.plugins.tfoperator.TFApplication)
-      TFApplicationOrBuilder {
-  private static final long serialVersionUID = 0L;
-    // Use TFApplication.newBuilder() to construct.
-    private TFApplication(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
-      super(builder);
-    }
-    private TFApplication() {
-    }
-
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-    getUnknownFields() {
-      return this.unknownFields;
-    }
-    private TFApplication(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      this();
-      if (extensionRegistry == null) {
-        throw new java.lang.NullPointerException();
-      }
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return flyte.plugins.tfoperator.Tfoperator.internal_static_flyte_plugins_tfoperator_TFApplication_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return flyte.plugins.tfoperator.Tfoperator.internal_static_flyte_plugins_tfoperator_TFApplication_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              flyte.plugins.tfoperator.Tfoperator.TFApplication.class, flyte.plugins.tfoperator.Tfoperator.TFApplication.Builder.class);
-    }
-
-    /**
-     * Protobuf enum {@code flyte.plugins.tfoperator.TFApplication.Type}
-     */
-    public enum Type
-        implements com.google.protobuf.ProtocolMessageEnum {
-      /**
-       * <code>PYTHON = 0;</code>
-       */
-      PYTHON(0),
-      UNRECOGNIZED(-1),
-      ;
-
-      /**
-       * <code>PYTHON = 0;</code>
-       */
-      public static final int PYTHON_VALUE = 0;
-
-
-      public final int getNumber() {
-        if (this == UNRECOGNIZED) {
-          throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
-        }
-        return value;
-      }
-
-      /**
-       * @deprecated Use {@link #forNumber(int)} instead.
-       */
-      @java.lang.Deprecated
-      public static Type valueOf(int value) {
-        return forNumber(value);
-      }
-
-      public static Type forNumber(int value) {
-        switch (value) {
-          case 0: return PYTHON;
-          default: return null;
-        }
-      }
-
-      public static com.google.protobuf.Internal.EnumLiteMap<Type>
-          internalGetValueMap() {
-        return internalValueMap;
-      }
-      private static final com.google.protobuf.Internal.EnumLiteMap<
-          Type> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<Type>() {
-              public Type findValueByNumber(int number) {
-                return Type.forNumber(number);
-              }
-            };
-
-      public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
-        return getDescriptor().getValues().get(ordinal());
-      }
-      public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
-        return getDescriptor();
-      }
-      public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
-        return flyte.plugins.tfoperator.Tfoperator.TFApplication.getDescriptor().getEnumTypes().get(0);
-      }
-
-      private static final Type[] VALUES = values();
-
-      public static Type valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
-        if (desc.getType() != getDescriptor()) {
-          throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
-        }
-        if (desc.getIndex() == -1) {
-          return UNRECOGNIZED;
-        }
-        return VALUES[desc.getIndex()];
-      }
-
-      private final int value;
-
-      private Type(int value) {
-        this.value = value;
-      }
-
-      // @@protoc_insertion_point(enum_scope:flyte.plugins.tfoperator.TFApplication.Type)
-    }
-
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      unknownFields.writeTo(output);
-    }
-
-    public int getSerializedSize() {
-      int size = memoizedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      size += unknownFields.getSerializedSize();
-      memoizedSize = size;
-      return size;
-    }
-
-    @java.lang.Override
-    public boolean equals(final java.lang.Object obj) {
-      if (obj == this) {
-       return true;
-      }
-      if (!(obj instanceof flyte.plugins.tfoperator.Tfoperator.TFApplication)) {
-        return super.equals(obj);
-      }
-      flyte.plugins.tfoperator.Tfoperator.TFApplication other = (flyte.plugins.tfoperator.Tfoperator.TFApplication) obj;
-
-      boolean result = true;
-      result = result && unknownFields.equals(other.unknownFields);
-      return result;
-    }
-
-    @java.lang.Override
-    public int hashCode() {
-      if (memoizedHashCode != 0) {
-        return memoizedHashCode;
-      }
-      int hash = 41;
-      hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (29 * hash) + unknownFields.hashCode();
-      memoizedHashCode = hash;
-      return hash;
-    }
-
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
-    }
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
-    }
-
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder() {
-      return DEFAULT_INSTANCE.toBuilder();
-    }
-    public static Builder newBuilder(flyte.plugins.tfoperator.Tfoperator.TFApplication prototype) {
-      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() {
-      return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
-    }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code flyte.plugins.tfoperator.TFApplication}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:flyte.plugins.tfoperator.TFApplication)
-        flyte.plugins.tfoperator.Tfoperator.TFApplicationOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return flyte.plugins.tfoperator.Tfoperator.internal_static_flyte_plugins_tfoperator_TFApplication_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return flyte.plugins.tfoperator.Tfoperator.internal_static_flyte_plugins_tfoperator_TFApplication_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                flyte.plugins.tfoperator.Tfoperator.TFApplication.class, flyte.plugins.tfoperator.Tfoperator.TFApplication.Builder.class);
-      }
-
-      // Construct using flyte.plugins.tfoperator.Tfoperator.TFApplication.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessageV3
-                .alwaysUseFieldBuilders) {
-        }
-      }
-      public Builder clear() {
-        super.clear();
-        return this;
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return flyte.plugins.tfoperator.Tfoperator.internal_static_flyte_plugins_tfoperator_TFApplication_descriptor;
-      }
-
-      public flyte.plugins.tfoperator.Tfoperator.TFApplication getDefaultInstanceForType() {
-        return flyte.plugins.tfoperator.Tfoperator.TFApplication.getDefaultInstance();
-      }
-
-      public flyte.plugins.tfoperator.Tfoperator.TFApplication build() {
-        flyte.plugins.tfoperator.Tfoperator.TFApplication result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public flyte.plugins.tfoperator.Tfoperator.TFApplication buildPartial() {
-        flyte.plugins.tfoperator.Tfoperator.TFApplication result = new flyte.plugins.tfoperator.Tfoperator.TFApplication(this);
-        onBuilt();
-        return result;
-      }
-
-      public Builder clone() {
-        return (Builder) super.clone();
-      }
-      public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.setField(field, value);
-      }
-      public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
-        return (Builder) super.clearField(field);
-      }
-      public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
-        return (Builder) super.clearOneof(oneof);
-      }
-      public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
-        return (Builder) super.setRepeatedField(field, index, value);
-      }
-      public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
-        return (Builder) super.addRepeatedField(field, value);
-      }
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof flyte.plugins.tfoperator.Tfoperator.TFApplication) {
-          return mergeFrom((flyte.plugins.tfoperator.Tfoperator.TFApplication)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(flyte.plugins.tfoperator.Tfoperator.TFApplication other) {
-        if (other == flyte.plugins.tfoperator.Tfoperator.TFApplication.getDefaultInstance()) return this;
-        this.mergeUnknownFields(other.unknownFields);
-        onChanged();
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        flyte.plugins.tfoperator.Tfoperator.TFApplication parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (flyte.plugins.tfoperator.Tfoperator.TFApplication) e.getUnfinishedMessage();
-          throw e.unwrapIOException();
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.setUnknownFieldsProto3(unknownFields);
-      }
-
-      public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
-        return super.mergeUnknownFields(unknownFields);
-      }
-
-
-      // @@protoc_insertion_point(builder_scope:flyte.plugins.tfoperator.TFApplication)
-    }
-
-    // @@protoc_insertion_point(class_scope:flyte.plugins.tfoperator.TFApplication)
-    private static final flyte.plugins.tfoperator.Tfoperator.TFApplication DEFAULT_INSTANCE;
-    static {
-      DEFAULT_INSTANCE = new flyte.plugins.tfoperator.Tfoperator.TFApplication();
-    }
-
-    public static flyte.plugins.tfoperator.Tfoperator.TFApplication getDefaultInstance() {
-      return DEFAULT_INSTANCE;
-    }
-
-    private static final com.google.protobuf.Parser<TFApplication>
-        PARSER = new com.google.protobuf.AbstractParser<TFApplication>() {
-      public TFApplication parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new TFApplication(input, extensionRegistry);
-      }
-    };
-
-    public static com.google.protobuf.Parser<TFApplication> parser() {
-      return PARSER;
-    }
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<TFApplication> getParserForType() {
-      return PARSER;
-    }
-
-    public flyte.plugins.tfoperator.Tfoperator.TFApplication getDefaultInstanceForType() {
-      return DEFAULT_INSTANCE;
-    }
-
-  }
-
   public interface TFJobOrBuilder extends
       // @@protoc_insertion_point(interface_extends:flyte.plugins.tfoperator.TFJob)
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-     */
-    int getApplicationTypeValue();
-    /**
-     * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-     */
-    flyte.plugins.tfoperator.Tfoperator.TFApplication.Type getApplicationType();
-
-    /**
-     * <code>string image = 2;</code>
+     * <code>string image = 1;</code>
      */
     java.lang.String getImage();
     /**
-     * <code>string image = 2;</code>
+     * <code>string image = 1;</code>
      */
     com.google.protobuf.ByteString
         getImageBytes();
+
+    /**
+     * <code>int32 num_ps = 2;</code>
+     */
+    int getNumPs();
 
     /**
      * <code>int32 replicas = 3;</code>
@@ -914,11 +434,21 @@ public final class Tfoperator {
     int getReplicas();
 
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>string command = 4;</code>
+     */
+    java.lang.String getCommand();
+    /**
+     * <code>string command = 4;</code>
+     */
+    com.google.protobuf.ByteString
+        getCommandBytes();
+
+    /**
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
     int getArgsCount();
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
     boolean containsArgs(
         java.lang.String key);
@@ -929,35 +459,51 @@ public final class Tfoperator {
     java.util.Map<java.lang.String, java.lang.String>
     getArgs();
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
     java.util.Map<java.lang.String, java.lang.String>
     getArgsMap();
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
 
     java.lang.String getArgsOrDefault(
         java.lang.String key,
         java.lang.String defaultValue);
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
 
     java.lang.String getArgsOrThrow(
         java.lang.String key);
 
     /**
-     * <code>string volumeClaimName = 5;</code>
+     * <pre>
+     * int32 cpu = 6;
+     * int32 memory = 7;
+     * int32 gpu = 8;
+     * </pre>
+     *
+     * <code>string volumeClaimName = 6;</code>
      */
     java.lang.String getVolumeClaimName();
     /**
-     * <code>string volumeClaimName = 5;</code>
+     * <pre>
+     * int32 cpu = 6;
+     * int32 memory = 7;
+     * int32 gpu = 8;
+     * </pre>
+     *
+     * <code>string volumeClaimName = 6;</code>
      */
     com.google.protobuf.ByteString
         getVolumeClaimNameBytes();
   }
   /**
+   * <pre>
+   * TODO(swiftdiaries):: add resource (CPUs, Memory) requirements and accelerator (GPU) requirements 
+   * </pre>
+   *
    * Protobuf type {@code flyte.plugins.tfoperator.TFJob}
    */
   public  static final class TFJob extends
@@ -970,9 +516,10 @@ public final class Tfoperator {
       super(builder);
     }
     private TFJob() {
-      applicationType_ = 0;
       image_ = "";
+      numPs_ = 0;
       replicas_ = 0;
+      command_ = "";
       volumeClaimName_ = "";
     }
 
@@ -1007,16 +554,15 @@ public final class Tfoperator {
               }
               break;
             }
-            case 8: {
-              int rawValue = input.readEnum();
-
-              applicationType_ = rawValue;
-              break;
-            }
-            case 18: {
+            case 10: {
               java.lang.String s = input.readStringRequireUtf8();
 
               image_ = s;
+              break;
+            }
+            case 16: {
+
+              numPs_ = input.readInt32();
               break;
             }
             case 24: {
@@ -1025,10 +571,16 @@ public final class Tfoperator {
               break;
             }
             case 34: {
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+              java.lang.String s = input.readStringRequireUtf8();
+
+              command_ = s;
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
                 args_ = com.google.protobuf.MapField.newMapField(
                     ArgsDefaultEntryHolder.defaultEntry);
-                mutable_bitField0_ |= 0x00000008;
+                mutable_bitField0_ |= 0x00000010;
               }
               com.google.protobuf.MapEntry<java.lang.String, java.lang.String>
               args__ = input.readMessage(
@@ -1037,7 +589,7 @@ public final class Tfoperator {
                   args__.getKey(), args__.getValue());
               break;
             }
-            case 42: {
+            case 50: {
               java.lang.String s = input.readStringRequireUtf8();
 
               volumeClaimName_ = s;
@@ -1064,7 +616,7 @@ public final class Tfoperator {
     protected com.google.protobuf.MapField internalGetMapField(
         int number) {
       switch (number) {
-        case 4:
+        case 5:
           return internalGetArgs();
         default:
           throw new RuntimeException(
@@ -1079,26 +631,10 @@ public final class Tfoperator {
     }
 
     private int bitField0_;
-    public static final int APPLICATIONTYPE_FIELD_NUMBER = 1;
-    private int applicationType_;
-    /**
-     * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-     */
-    public int getApplicationTypeValue() {
-      return applicationType_;
-    }
-    /**
-     * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-     */
-    public flyte.plugins.tfoperator.Tfoperator.TFApplication.Type getApplicationType() {
-      flyte.plugins.tfoperator.Tfoperator.TFApplication.Type result = flyte.plugins.tfoperator.Tfoperator.TFApplication.Type.valueOf(applicationType_);
-      return result == null ? flyte.plugins.tfoperator.Tfoperator.TFApplication.Type.UNRECOGNIZED : result;
-    }
-
-    public static final int IMAGE_FIELD_NUMBER = 2;
+    public static final int IMAGE_FIELD_NUMBER = 1;
     private volatile java.lang.Object image_;
     /**
-     * <code>string image = 2;</code>
+     * <code>string image = 1;</code>
      */
     public java.lang.String getImage() {
       java.lang.Object ref = image_;
@@ -1113,7 +649,7 @@ public final class Tfoperator {
       }
     }
     /**
-     * <code>string image = 2;</code>
+     * <code>string image = 1;</code>
      */
     public com.google.protobuf.ByteString
         getImageBytes() {
@@ -1129,6 +665,15 @@ public final class Tfoperator {
       }
     }
 
+    public static final int NUM_PS_FIELD_NUMBER = 2;
+    private int numPs_;
+    /**
+     * <code>int32 num_ps = 2;</code>
+     */
+    public int getNumPs() {
+      return numPs_;
+    }
+
     public static final int REPLICAS_FIELD_NUMBER = 3;
     private int replicas_;
     /**
@@ -1138,7 +683,41 @@ public final class Tfoperator {
       return replicas_;
     }
 
-    public static final int ARGS_FIELD_NUMBER = 4;
+    public static final int COMMAND_FIELD_NUMBER = 4;
+    private volatile java.lang.Object command_;
+    /**
+     * <code>string command = 4;</code>
+     */
+    public java.lang.String getCommand() {
+      java.lang.Object ref = command_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        command_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string command = 4;</code>
+     */
+    public com.google.protobuf.ByteString
+        getCommandBytes() {
+      java.lang.Object ref = command_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        command_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ARGS_FIELD_NUMBER = 5;
     private static final class ArgsDefaultEntryHolder {
       static final com.google.protobuf.MapEntry<
           java.lang.String, java.lang.String> defaultEntry =
@@ -1165,7 +744,7 @@ public final class Tfoperator {
       return internalGetArgs().getMap().size();
     }
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
 
     public boolean containsArgs(
@@ -1181,14 +760,14 @@ public final class Tfoperator {
       return getArgsMap();
     }
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
 
     public java.util.Map<java.lang.String, java.lang.String> getArgsMap() {
       return internalGetArgs().getMap();
     }
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
 
     public java.lang.String getArgsOrDefault(
@@ -1200,7 +779,7 @@ public final class Tfoperator {
       return map.containsKey(key) ? map.get(key) : defaultValue;
     }
     /**
-     * <code>map&lt;string, string&gt; args = 4;</code>
+     * <code>map&lt;string, string&gt; args = 5;</code>
      */
 
     public java.lang.String getArgsOrThrow(
@@ -1214,10 +793,16 @@ public final class Tfoperator {
       return map.get(key);
     }
 
-    public static final int VOLUMECLAIMNAME_FIELD_NUMBER = 5;
+    public static final int VOLUMECLAIMNAME_FIELD_NUMBER = 6;
     private volatile java.lang.Object volumeClaimName_;
     /**
-     * <code>string volumeClaimName = 5;</code>
+     * <pre>
+     * int32 cpu = 6;
+     * int32 memory = 7;
+     * int32 gpu = 8;
+     * </pre>
+     *
+     * <code>string volumeClaimName = 6;</code>
      */
     public java.lang.String getVolumeClaimName() {
       java.lang.Object ref = volumeClaimName_;
@@ -1232,7 +817,13 @@ public final class Tfoperator {
       }
     }
     /**
-     * <code>string volumeClaimName = 5;</code>
+     * <pre>
+     * int32 cpu = 6;
+     * int32 memory = 7;
+     * int32 gpu = 8;
+     * </pre>
+     *
+     * <code>string volumeClaimName = 6;</code>
      */
     public com.google.protobuf.ByteString
         getVolumeClaimNameBytes() {
@@ -1260,23 +851,26 @@ public final class Tfoperator {
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (applicationType_ != flyte.plugins.tfoperator.Tfoperator.TFApplication.Type.PYTHON.getNumber()) {
-        output.writeEnum(1, applicationType_);
-      }
       if (!getImageBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, image_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, image_);
+      }
+      if (numPs_ != 0) {
+        output.writeInt32(2, numPs_);
       }
       if (replicas_ != 0) {
         output.writeInt32(3, replicas_);
+      }
+      if (!getCommandBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, command_);
       }
       com.google.protobuf.GeneratedMessageV3
         .serializeStringMapTo(
           output,
           internalGetArgs(),
           ArgsDefaultEntryHolder.defaultEntry,
-          4);
+          5);
       if (!getVolumeClaimNameBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, volumeClaimName_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, volumeClaimName_);
       }
       unknownFields.writeTo(output);
     }
@@ -1286,16 +880,19 @@ public final class Tfoperator {
       if (size != -1) return size;
 
       size = 0;
-      if (applicationType_ != flyte.plugins.tfoperator.Tfoperator.TFApplication.Type.PYTHON.getNumber()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(1, applicationType_);
-      }
       if (!getImageBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, image_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, image_);
+      }
+      if (numPs_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, numPs_);
       }
       if (replicas_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(3, replicas_);
+      }
+      if (!getCommandBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, command_);
       }
       for (java.util.Map.Entry<java.lang.String, java.lang.String> entry
            : internalGetArgs().getMap().entrySet()) {
@@ -1305,10 +902,10 @@ public final class Tfoperator {
             .setValue(entry.getValue())
             .build();
         size += com.google.protobuf.CodedOutputStream
-            .computeMessageSize(4, args__);
+            .computeMessageSize(5, args__);
       }
       if (!getVolumeClaimNameBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, volumeClaimName_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, volumeClaimName_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1326,11 +923,14 @@ public final class Tfoperator {
       flyte.plugins.tfoperator.Tfoperator.TFJob other = (flyte.plugins.tfoperator.Tfoperator.TFJob) obj;
 
       boolean result = true;
-      result = result && applicationType_ == other.applicationType_;
       result = result && getImage()
           .equals(other.getImage());
+      result = result && (getNumPs()
+          == other.getNumPs());
       result = result && (getReplicas()
           == other.getReplicas());
+      result = result && getCommand()
+          .equals(other.getCommand());
       result = result && internalGetArgs().equals(
           other.internalGetArgs());
       result = result && getVolumeClaimName()
@@ -1346,12 +946,14 @@ public final class Tfoperator {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + APPLICATIONTYPE_FIELD_NUMBER;
-      hash = (53 * hash) + applicationType_;
       hash = (37 * hash) + IMAGE_FIELD_NUMBER;
       hash = (53 * hash) + getImage().hashCode();
+      hash = (37 * hash) + NUM_PS_FIELD_NUMBER;
+      hash = (53 * hash) + getNumPs();
       hash = (37 * hash) + REPLICAS_FIELD_NUMBER;
       hash = (53 * hash) + getReplicas();
+      hash = (37 * hash) + COMMAND_FIELD_NUMBER;
+      hash = (53 * hash) + getCommand().hashCode();
       if (!internalGetArgs().getMap().isEmpty()) {
         hash = (37 * hash) + ARGS_FIELD_NUMBER;
         hash = (53 * hash) + internalGetArgs().hashCode();
@@ -1452,6 +1054,10 @@ public final class Tfoperator {
       return builder;
     }
     /**
+     * <pre>
+     * TODO(swiftdiaries):: add resource (CPUs, Memory) requirements and accelerator (GPU) requirements 
+     * </pre>
+     *
      * Protobuf type {@code flyte.plugins.tfoperator.TFJob}
      */
     public static final class Builder extends
@@ -1467,7 +1073,7 @@ public final class Tfoperator {
       protected com.google.protobuf.MapField internalGetMapField(
           int number) {
         switch (number) {
-          case 4:
+          case 5:
             return internalGetArgs();
           default:
             throw new RuntimeException(
@@ -1478,7 +1084,7 @@ public final class Tfoperator {
       protected com.google.protobuf.MapField internalGetMutableMapField(
           int number) {
         switch (number) {
-          case 4:
+          case 5:
             return internalGetMutableArgs();
           default:
             throw new RuntimeException(
@@ -1509,11 +1115,13 @@ public final class Tfoperator {
       }
       public Builder clear() {
         super.clear();
-        applicationType_ = 0;
-
         image_ = "";
 
+        numPs_ = 0;
+
         replicas_ = 0;
+
+        command_ = "";
 
         internalGetMutableArgs().clear();
         volumeClaimName_ = "";
@@ -1542,9 +1150,10 @@ public final class Tfoperator {
         flyte.plugins.tfoperator.Tfoperator.TFJob result = new flyte.plugins.tfoperator.Tfoperator.TFJob(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        result.applicationType_ = applicationType_;
         result.image_ = image_;
+        result.numPs_ = numPs_;
         result.replicas_ = replicas_;
+        result.command_ = command_;
         result.args_ = internalGetArgs();
         result.args_.makeImmutable();
         result.volumeClaimName_ = volumeClaimName_;
@@ -1590,15 +1199,19 @@ public final class Tfoperator {
 
       public Builder mergeFrom(flyte.plugins.tfoperator.Tfoperator.TFJob other) {
         if (other == flyte.plugins.tfoperator.Tfoperator.TFJob.getDefaultInstance()) return this;
-        if (other.applicationType_ != 0) {
-          setApplicationTypeValue(other.getApplicationTypeValue());
-        }
         if (!other.getImage().isEmpty()) {
           image_ = other.image_;
           onChanged();
         }
+        if (other.getNumPs() != 0) {
+          setNumPs(other.getNumPs());
+        }
         if (other.getReplicas() != 0) {
           setReplicas(other.getReplicas());
+        }
+        if (!other.getCommand().isEmpty()) {
+          command_ = other.command_;
+          onChanged();
         }
         internalGetMutableArgs().mergeFrom(
             other.internalGetArgs());
@@ -1634,53 +1247,9 @@ public final class Tfoperator {
       }
       private int bitField0_;
 
-      private int applicationType_ = 0;
-      /**
-       * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-       */
-      public int getApplicationTypeValue() {
-        return applicationType_;
-      }
-      /**
-       * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-       */
-      public Builder setApplicationTypeValue(int value) {
-        applicationType_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-       */
-      public flyte.plugins.tfoperator.Tfoperator.TFApplication.Type getApplicationType() {
-        flyte.plugins.tfoperator.Tfoperator.TFApplication.Type result = flyte.plugins.tfoperator.Tfoperator.TFApplication.Type.valueOf(applicationType_);
-        return result == null ? flyte.plugins.tfoperator.Tfoperator.TFApplication.Type.UNRECOGNIZED : result;
-      }
-      /**
-       * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-       */
-      public Builder setApplicationType(flyte.plugins.tfoperator.Tfoperator.TFApplication.Type value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        
-        applicationType_ = value.getNumber();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>.flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;</code>
-       */
-      public Builder clearApplicationType() {
-        
-        applicationType_ = 0;
-        onChanged();
-        return this;
-      }
-
       private java.lang.Object image_ = "";
       /**
-       * <code>string image = 2;</code>
+       * <code>string image = 1;</code>
        */
       public java.lang.String getImage() {
         java.lang.Object ref = image_;
@@ -1695,7 +1264,7 @@ public final class Tfoperator {
         }
       }
       /**
-       * <code>string image = 2;</code>
+       * <code>string image = 1;</code>
        */
       public com.google.protobuf.ByteString
           getImageBytes() {
@@ -1711,7 +1280,7 @@ public final class Tfoperator {
         }
       }
       /**
-       * <code>string image = 2;</code>
+       * <code>string image = 1;</code>
        */
       public Builder setImage(
           java.lang.String value) {
@@ -1724,7 +1293,7 @@ public final class Tfoperator {
         return this;
       }
       /**
-       * <code>string image = 2;</code>
+       * <code>string image = 1;</code>
        */
       public Builder clearImage() {
         
@@ -1733,7 +1302,7 @@ public final class Tfoperator {
         return this;
       }
       /**
-       * <code>string image = 2;</code>
+       * <code>string image = 1;</code>
        */
       public Builder setImageBytes(
           com.google.protobuf.ByteString value) {
@@ -1743,6 +1312,32 @@ public final class Tfoperator {
   checkByteStringIsUtf8(value);
         
         image_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int numPs_ ;
+      /**
+       * <code>int32 num_ps = 2;</code>
+       */
+      public int getNumPs() {
+        return numPs_;
+      }
+      /**
+       * <code>int32 num_ps = 2;</code>
+       */
+      public Builder setNumPs(int value) {
+        
+        numPs_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 num_ps = 2;</code>
+       */
+      public Builder clearNumPs() {
+        
+        numPs_ = 0;
         onChanged();
         return this;
       }
@@ -1769,6 +1364,75 @@ public final class Tfoperator {
       public Builder clearReplicas() {
         
         replicas_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object command_ = "";
+      /**
+       * <code>string command = 4;</code>
+       */
+      public java.lang.String getCommand() {
+        java.lang.Object ref = command_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          command_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string command = 4;</code>
+       */
+      public com.google.protobuf.ByteString
+          getCommandBytes() {
+        java.lang.Object ref = command_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          command_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string command = 4;</code>
+       */
+      public Builder setCommand(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        command_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string command = 4;</code>
+       */
+      public Builder clearCommand() {
+        
+        command_ = getDefaultInstance().getCommand();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string command = 4;</code>
+       */
+      public Builder setCommandBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        command_ = value;
         onChanged();
         return this;
       }
@@ -1800,7 +1464,7 @@ public final class Tfoperator {
         return internalGetArgs().getMap().size();
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
 
       public boolean containsArgs(
@@ -1816,14 +1480,14 @@ public final class Tfoperator {
         return getArgsMap();
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
 
       public java.util.Map<java.lang.String, java.lang.String> getArgsMap() {
         return internalGetArgs().getMap();
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
 
       public java.lang.String getArgsOrDefault(
@@ -1835,7 +1499,7 @@ public final class Tfoperator {
         return map.containsKey(key) ? map.get(key) : defaultValue;
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
 
       public java.lang.String getArgsOrThrow(
@@ -1855,7 +1519,7 @@ public final class Tfoperator {
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
 
       public Builder removeArgs(
@@ -1874,7 +1538,7 @@ public final class Tfoperator {
         return internalGetMutableArgs().getMutableMap();
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
       public Builder putArgs(
           java.lang.String key,
@@ -1886,7 +1550,7 @@ public final class Tfoperator {
         return this;
       }
       /**
-       * <code>map&lt;string, string&gt; args = 4;</code>
+       * <code>map&lt;string, string&gt; args = 5;</code>
        */
 
       public Builder putAllArgs(
@@ -1898,7 +1562,13 @@ public final class Tfoperator {
 
       private java.lang.Object volumeClaimName_ = "";
       /**
-       * <code>string volumeClaimName = 5;</code>
+       * <pre>
+       * int32 cpu = 6;
+       * int32 memory = 7;
+       * int32 gpu = 8;
+       * </pre>
+       *
+       * <code>string volumeClaimName = 6;</code>
        */
       public java.lang.String getVolumeClaimName() {
         java.lang.Object ref = volumeClaimName_;
@@ -1913,7 +1583,13 @@ public final class Tfoperator {
         }
       }
       /**
-       * <code>string volumeClaimName = 5;</code>
+       * <pre>
+       * int32 cpu = 6;
+       * int32 memory = 7;
+       * int32 gpu = 8;
+       * </pre>
+       *
+       * <code>string volumeClaimName = 6;</code>
        */
       public com.google.protobuf.ByteString
           getVolumeClaimNameBytes() {
@@ -1929,7 +1605,13 @@ public final class Tfoperator {
         }
       }
       /**
-       * <code>string volumeClaimName = 5;</code>
+       * <pre>
+       * int32 cpu = 6;
+       * int32 memory = 7;
+       * int32 gpu = 8;
+       * </pre>
+       *
+       * <code>string volumeClaimName = 6;</code>
        */
       public Builder setVolumeClaimName(
           java.lang.String value) {
@@ -1942,7 +1624,13 @@ public final class Tfoperator {
         return this;
       }
       /**
-       * <code>string volumeClaimName = 5;</code>
+       * <pre>
+       * int32 cpu = 6;
+       * int32 memory = 7;
+       * int32 gpu = 8;
+       * </pre>
+       *
+       * <code>string volumeClaimName = 6;</code>
        */
       public Builder clearVolumeClaimName() {
         
@@ -1951,7 +1639,13 @@ public final class Tfoperator {
         return this;
       }
       /**
-       * <code>string volumeClaimName = 5;</code>
+       * <pre>
+       * int32 cpu = 6;
+       * int32 memory = 7;
+       * int32 gpu = 8;
+       * </pre>
+       *
+       * <code>string volumeClaimName = 6;</code>
        */
       public Builder setVolumeClaimNameBytes(
           com.google.protobuf.ByteString value) {
@@ -2019,11 +1713,6 @@ public final class Tfoperator {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_flyte_plugins_tfoperator_TFOperatorPluginTask_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_flyte_plugins_tfoperator_TFApplication_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_flyte_plugins_tfoperator_TFApplication_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_flyte_plugins_tfoperator_TFJob_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -2043,16 +1732,14 @@ public final class Tfoperator {
   static {
     java.lang.String[] descriptorData = {
       "\n\020tfoperator.proto\022\030flyte.plugins.tfoper" +
-      "ator\"\026\n\024TFOperatorPluginTask\"#\n\rTFApplic" +
-      "ation\"\022\n\004Type\022\n\n\006PYTHON\020\000\"\356\001\n\005TFJob\022E\n\017a" +
-      "pplicationType\030\001 \001(\0162,.flyte.plugins.tfo" +
-      "perator.TFApplication.Type\022\r\n\005image\030\002 \001(" +
-      "\t\022\020\n\010replicas\030\003 \001(\005\0227\n\004args\030\004 \003(\0132).flyt" +
-      "e.plugins.tfoperator.TFJob.ArgsEntry\022\027\n\017" +
-      "volumeClaimName\030\005 \001(\t\032+\n\tArgsEntry\022\013\n\003ke" +
-      "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B7Z5github.com" +
-      "/swiftdiaries/tfoperatorplugin/common/pr" +
-      "otob\006proto3"
+      "ator\"\026\n\024TFOperatorPluginTask\"\310\001\n\005TFJob\022\r" +
+      "\n\005image\030\001 \001(\t\022\016\n\006num_ps\030\002 \001(\005\022\020\n\010replica" +
+      "s\030\003 \001(\005\022\017\n\007command\030\004 \001(\t\0227\n\004args\030\005 \003(\0132)" +
+      ".flyte.plugins.tfoperator.TFJob.ArgsEntr" +
+      "y\022\027\n\017volumeClaimName\030\006 \001(\t\032+\n\tArgsEntry\022" +
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B7Z5githu" +
+      "b.com/flyteorg/kfplugins/tfoperator/comm" +
+      "on/protob\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2072,18 +1759,12 @@ public final class Tfoperator {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_flyte_plugins_tfoperator_TFOperatorPluginTask_descriptor,
         new java.lang.String[] { });
-    internal_static_flyte_plugins_tfoperator_TFApplication_descriptor =
-      getDescriptor().getMessageTypes().get(1);
-    internal_static_flyte_plugins_tfoperator_TFApplication_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_flyte_plugins_tfoperator_TFApplication_descriptor,
-        new java.lang.String[] { });
     internal_static_flyte_plugins_tfoperator_TFJob_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(1);
     internal_static_flyte_plugins_tfoperator_TFJob_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_flyte_plugins_tfoperator_TFJob_descriptor,
-        new java.lang.String[] { "ApplicationType", "Image", "Replicas", "Args", "VolumeClaimName", });
+        new java.lang.String[] { "Image", "NumPs", "Replicas", "Command", "Args", "VolumeClaimName", });
     internal_static_flyte_plugins_tfoperator_TFJob_ArgsEntry_descriptor =
       internal_static_flyte_plugins_tfoperator_TFJob_descriptor.getNestedTypes().get(0);
     internal_static_flyte_plugins_tfoperator_TFJob_ArgsEntry_fieldAccessorTable = new

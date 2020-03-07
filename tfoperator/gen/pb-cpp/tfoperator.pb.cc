@@ -27,11 +27,6 @@ class TFOperatorPluginTaskDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<TFOperatorPluginTask>
       _instance;
 } _TFOperatorPluginTask_default_instance_;
-class TFApplicationDefaultTypeInternal {
- public:
-  ::google::protobuf::internal::ExplicitlyConstructed<TFApplication>
-      _instance;
-} _TFApplication_default_instance_;
 class TFJob_ArgsEntry_DoNotUseDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<TFJob_ArgsEntry_DoNotUse>
@@ -65,27 +60,6 @@ void InitDefaultsTFOperatorPluginTaskImpl() {
 void InitDefaultsTFOperatorPluginTask() {
   static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
   ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsTFOperatorPluginTaskImpl);
-}
-
-void InitDefaultsTFApplicationImpl() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
-#else
-  ::google::protobuf::internal::InitProtobufDefaults();
-#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  {
-    void* ptr = &::flyte::plugins::tfoperator::_TFApplication_default_instance_;
-    new (ptr) ::flyte::plugins::tfoperator::TFApplication();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::flyte::plugins::tfoperator::TFApplication::InitAsDefaultInstance();
-}
-
-void InitDefaultsTFApplication() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsTFApplicationImpl);
 }
 
 void InitDefaultsTFJob_ArgsEntry_DoNotUseImpl() {
@@ -130,17 +104,11 @@ void InitDefaultsTFJob() {
   ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsTFJobImpl);
 }
 
-::google::protobuf::Metadata file_level_metadata[4];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
+::google::protobuf::Metadata file_level_metadata[3];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFOperatorPluginTask, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFApplication, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
@@ -158,22 +126,21 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, applicationtype_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, image_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, num_ps_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, replicas_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, command_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, args_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::flyte::plugins::tfoperator::TFJob, volumeclaimname_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::flyte::plugins::tfoperator::TFOperatorPluginTask)},
-  { 5, -1, sizeof(::flyte::plugins::tfoperator::TFApplication)},
-  { 10, 17, sizeof(::flyte::plugins::tfoperator::TFJob_ArgsEntry_DoNotUse)},
-  { 19, -1, sizeof(::flyte::plugins::tfoperator::TFJob)},
+  { 5, 12, sizeof(::flyte::plugins::tfoperator::TFJob_ArgsEntry_DoNotUse)},
+  { 14, -1, sizeof(::flyte::plugins::tfoperator::TFJob)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::flyte::plugins::tfoperator::_TFOperatorPluginTask_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::flyte::plugins::tfoperator::_TFApplication_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::flyte::plugins::tfoperator::_TFJob_ArgsEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::flyte::plugins::tfoperator::_TFJob_default_instance_),
 };
@@ -183,7 +150,7 @@ void protobuf_AssignDescriptors() {
   ::google::protobuf::MessageFactory* factory = NULL;
   AssignDescriptors(
       "tfoperator.proto", schemas, file_default_instances, TableStruct::offsets, factory,
-      file_level_metadata, file_level_enum_descriptors, NULL);
+      file_level_metadata, NULL, NULL);
 }
 
 void protobuf_AssignDescriptorsOnce() {
@@ -194,26 +161,24 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 4);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 3);
 }
 
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
       "\n\020tfoperator.proto\022\030flyte.plugins.tfoper"
-      "ator\"\026\n\024TFOperatorPluginTask\"#\n\rTFApplic"
-      "ation\"\022\n\004Type\022\n\n\006PYTHON\020\000\"\356\001\n\005TFJob\022E\n\017a"
-      "pplicationType\030\001 \001(\0162,.flyte.plugins.tfo"
-      "perator.TFApplication.Type\022\r\n\005image\030\002 \001("
-      "\t\022\020\n\010replicas\030\003 \001(\005\0227\n\004args\030\004 \003(\0132).flyt"
-      "e.plugins.tfoperator.TFJob.ArgsEntry\022\027\n\017"
-      "volumeClaimName\030\005 \001(\t\032+\n\tArgsEntry\022\013\n\003ke"
-      "y\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B7Z5github.com"
-      "/swiftdiaries/tfoperatorplugin/common/pr"
-      "otob\006proto3"
+      "ator\"\026\n\024TFOperatorPluginTask\"\310\001\n\005TFJob\022\r"
+      "\n\005image\030\001 \001(\t\022\016\n\006num_ps\030\002 \001(\005\022\020\n\010replica"
+      "s\030\003 \001(\005\022\017\n\007command\030\004 \001(\t\0227\n\004args\030\005 \003(\0132)"
+      ".flyte.plugins.tfoperator.TFJob.ArgsEntr"
+      "y\022\027\n\017volumeClaimName\030\006 \001(\t\032+\n\tArgsEntry\022"
+      "\013\n\003key\030\001 \001(\t\022\r\n\005value\030\002 \001(\t:\0028\001B7Z5githu"
+      "b.com/flyteorg/kfplugins/tfoperator/comm"
+      "on/protob\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 411);
+      descriptor, 336);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "tfoperator.proto", &protobuf_RegisterTypes);
 }
@@ -232,25 +197,6 @@ struct StaticDescriptorInitializer {
 namespace flyte {
 namespace plugins {
 namespace tfoperator {
-const ::google::protobuf::EnumDescriptor* TFApplication_Type_descriptor() {
-  protobuf_tfoperator_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_tfoperator_2eproto::file_level_enum_descriptors[0];
-}
-bool TFApplication_Type_IsValid(int value) {
-  switch (value) {
-    case 0:
-      return true;
-    default:
-      return false;
-  }
-}
-
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const TFApplication_Type TFApplication::PYTHON;
-const TFApplication_Type TFApplication::Type_MIN;
-const TFApplication_Type TFApplication::Type_MAX;
-const int TFApplication::Type_ARRAYSIZE;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 // ===================================================================
 
@@ -448,200 +394,6 @@ void TFOperatorPluginTask::InternalSwap(TFOperatorPluginTask* other) {
 
 // ===================================================================
 
-void TFApplication::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-TFApplication::TFApplication()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    ::protobuf_tfoperator_2eproto::InitDefaultsTFApplication();
-  }
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:flyte.plugins.tfoperator.TFApplication)
-}
-TFApplication::TFApplication(const TFApplication& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  // @@protoc_insertion_point(copy_constructor:flyte.plugins.tfoperator.TFApplication)
-}
-
-void TFApplication::SharedCtor() {
-  _cached_size_ = 0;
-}
-
-TFApplication::~TFApplication() {
-  // @@protoc_insertion_point(destructor:flyte.plugins.tfoperator.TFApplication)
-  SharedDtor();
-}
-
-void TFApplication::SharedDtor() {
-}
-
-void TFApplication::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-}
-const ::google::protobuf::Descriptor* TFApplication::descriptor() {
-  ::protobuf_tfoperator_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tfoperator_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
-const TFApplication& TFApplication::default_instance() {
-  ::protobuf_tfoperator_2eproto::InitDefaultsTFApplication();
-  return *internal_default_instance();
-}
-
-TFApplication* TFApplication::New(::google::protobuf::Arena* arena) const {
-  TFApplication* n = new TFApplication;
-  if (arena != NULL) {
-    arena->Own(n);
-  }
-  return n;
-}
-
-void TFApplication::Clear() {
-// @@protoc_insertion_point(message_clear_start:flyte.plugins.tfoperator.TFApplication)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _internal_metadata_.Clear();
-}
-
-bool TFApplication::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:flyte.plugins.tfoperator.TFApplication)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-  handle_unusual:
-    if (tag == 0) {
-      goto success;
-    }
-    DO_(::google::protobuf::internal::WireFormat::SkipField(
-          input, tag, _internal_metadata_.mutable_unknown_fields()));
-  }
-success:
-  // @@protoc_insertion_point(parse_success:flyte.plugins.tfoperator.TFApplication)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:flyte.plugins.tfoperator.TFApplication)
-  return false;
-#undef DO_
-}
-
-void TFApplication::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:flyte.plugins.tfoperator.TFApplication)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
-  }
-  // @@protoc_insertion_point(serialize_end:flyte.plugins.tfoperator.TFApplication)
-}
-
-::google::protobuf::uint8* TFApplication::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:flyte.plugins.tfoperator.TFApplication)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:flyte.plugins.tfoperator.TFApplication)
-  return target;
-}
-
-size_t TFApplication::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:flyte.plugins.tfoperator.TFApplication)
-  size_t total_size = 0;
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
-  return total_size;
-}
-
-void TFApplication::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:flyte.plugins.tfoperator.TFApplication)
-  GOOGLE_DCHECK_NE(&from, this);
-  const TFApplication* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const TFApplication>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:flyte.plugins.tfoperator.TFApplication)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:flyte.plugins.tfoperator.TFApplication)
-    MergeFrom(*source);
-  }
-}
-
-void TFApplication::MergeFrom(const TFApplication& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:flyte.plugins.tfoperator.TFApplication)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-}
-
-void TFApplication::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:flyte.plugins.tfoperator.TFApplication)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void TFApplication::CopyFrom(const TFApplication& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:flyte.plugins.tfoperator.TFApplication)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool TFApplication::IsInitialized() const {
-  return true;
-}
-
-void TFApplication::Swap(TFApplication* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void TFApplication::InternalSwap(TFApplication* other) {
-  using std::swap;
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(_cached_size_, other->_cached_size_);
-}
-
-::google::protobuf::Metadata TFApplication::GetMetadata() const {
-  protobuf_tfoperator_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tfoperator_2eproto::file_level_metadata[kIndexInFileMessages];
-}
-
-
-// ===================================================================
-
 TFJob_ArgsEntry_DoNotUse::TFJob_ArgsEntry_DoNotUse() {}
 TFJob_ArgsEntry_DoNotUse::TFJob_ArgsEntry_DoNotUse(::google::protobuf::Arena* arena) : SuperType(arena) {}
 void TFJob_ArgsEntry_DoNotUse::MergeFrom(const TFJob_ArgsEntry_DoNotUse& other) {
@@ -649,7 +401,7 @@ void TFJob_ArgsEntry_DoNotUse::MergeFrom(const TFJob_ArgsEntry_DoNotUse& other) 
 }
 ::google::protobuf::Metadata TFJob_ArgsEntry_DoNotUse::GetMetadata() const {
   ::protobuf_tfoperator_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tfoperator_2eproto::file_level_metadata[2];
+  return ::protobuf_tfoperator_2eproto::file_level_metadata[1];
 }
 void TFJob_ArgsEntry_DoNotUse::MergeFrom(
     const ::google::protobuf::Message& other) {
@@ -662,9 +414,10 @@ void TFJob_ArgsEntry_DoNotUse::MergeFrom(
 void TFJob::InitAsDefaultInstance() {
 }
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int TFJob::kApplicationTypeFieldNumber;
 const int TFJob::kImageFieldNumber;
+const int TFJob::kNumPsFieldNumber;
 const int TFJob::kReplicasFieldNumber;
+const int TFJob::kCommandFieldNumber;
 const int TFJob::kArgsFieldNumber;
 const int TFJob::kVolumeClaimNameFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -687,22 +440,27 @@ TFJob::TFJob(const TFJob& from)
   if (from.image().size() > 0) {
     image_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.image_);
   }
+  command_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  if (from.command().size() > 0) {
+    command_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.command_);
+  }
   volumeclaimname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   if (from.volumeclaimname().size() > 0) {
     volumeclaimname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.volumeclaimname_);
   }
-  ::memcpy(&applicationtype_, &from.applicationtype_,
+  ::memcpy(&num_ps_, &from.num_ps_,
     static_cast<size_t>(reinterpret_cast<char*>(&replicas_) -
-    reinterpret_cast<char*>(&applicationtype_)) + sizeof(replicas_));
+    reinterpret_cast<char*>(&num_ps_)) + sizeof(replicas_));
   // @@protoc_insertion_point(copy_constructor:flyte.plugins.tfoperator.TFJob)
 }
 
 void TFJob::SharedCtor() {
   image_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  command_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   volumeclaimname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&applicationtype_, 0, static_cast<size_t>(
+  ::memset(&num_ps_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&replicas_) -
-      reinterpret_cast<char*>(&applicationtype_)) + sizeof(replicas_));
+      reinterpret_cast<char*>(&num_ps_)) + sizeof(replicas_));
   _cached_size_ = 0;
 }
 
@@ -713,6 +471,7 @@ TFJob::~TFJob() {
 
 void TFJob::SharedDtor() {
   image_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  command_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   volumeclaimname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
 
@@ -747,10 +506,11 @@ void TFJob::Clear() {
 
   args_.Clear();
   image_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  command_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   volumeclaimname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&applicationtype_, 0, static_cast<size_t>(
+  ::memset(&num_ps_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&replicas_) -
-      reinterpret_cast<char*>(&applicationtype_)) + sizeof(replicas_));
+      reinterpret_cast<char*>(&num_ps_)) + sizeof(replicas_));
   _internal_metadata_.Clear();
 }
 
@@ -764,31 +524,30 @@ bool TFJob::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // .flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;
+      // string image = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_applicationtype(static_cast< ::flyte::plugins::tfoperator::TFApplication_Type >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // string image = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(10u /* 10 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_image()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
             this->image().data(), static_cast<int>(this->image().length()),
             ::google::protobuf::internal::WireFormatLite::PARSE,
             "flyte.plugins.tfoperator.TFJob.image"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int32 num_ps = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                 input, &num_ps_)));
         } else {
           goto handle_unusual;
         }
@@ -809,10 +568,26 @@ bool TFJob::MergePartialFromCodedStream(
         break;
       }
 
-      // map<string, string> args = 4;
+      // string command = 4;
       case 4: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
+                input, this->mutable_command()));
+          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+            this->command().data(), static_cast<int>(this->command().length()),
+            ::google::protobuf::internal::WireFormatLite::PARSE,
+            "flyte.plugins.tfoperator.TFJob.command"));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // map<string, string> args = 5;
+      case 5: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
           TFJob_ArgsEntry_DoNotUse::Parser< ::google::protobuf::internal::MapField<
               TFJob_ArgsEntry_DoNotUse,
               ::std::string, ::std::string,
@@ -836,10 +611,10 @@ bool TFJob::MergePartialFromCodedStream(
         break;
       }
 
-      // string volumeClaimName = 5;
-      case 5: {
+      // string volumeClaimName = 6;
+      case 6: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
+            static_cast< ::google::protobuf::uint8>(50u /* 50 & 0xFF */)) {
           DO_(::google::protobuf::internal::WireFormatLite::ReadString(
                 input, this->mutable_volumeclaimname()));
           DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
@@ -878,20 +653,19 @@ void TFJob::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;
-  if (this->applicationtype() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      1, this->applicationtype(), output);
-  }
-
-  // string image = 2;
+  // string image = 1;
   if (this->image().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->image().data(), static_cast<int>(this->image().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "flyte.plugins.tfoperator.TFJob.image");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->image(), output);
+      1, this->image(), output);
+  }
+
+  // int32 num_ps = 2;
+  if (this->num_ps() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->num_ps(), output);
   }
 
   // int32 replicas = 3;
@@ -899,7 +673,17 @@ void TFJob::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->replicas(), output);
   }
 
-  // map<string, string> args = 4;
+  // string command = 4;
+  if (this->command().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->command().data(), static_cast<int>(this->command().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "flyte.plugins.tfoperator.TFJob.command");
+    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
+      4, this->command(), output);
+  }
+
+  // map<string, string> args = 5;
   if (!this->args().empty()) {
     typedef ::google::protobuf::Map< ::std::string, ::std::string >::const_pointer
         ConstPtr;
@@ -935,7 +719,7 @@ void TFJob::SerializeWithCachedSizes(
         entry.reset(args_.NewEntryWrapper(
             items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
         ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-            4, *entry, output);
+            5, *entry, output);
         Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
     } else {
@@ -946,20 +730,20 @@ void TFJob::SerializeWithCachedSizes(
         entry.reset(args_.NewEntryWrapper(
             it->first, it->second));
         ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
-            4, *entry, output);
+            5, *entry, output);
         Utf8Check::Check(&*it);
       }
     }
   }
 
-  // string volumeClaimName = 5;
+  // string volumeClaimName = 6;
   if (this->volumeclaimname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->volumeclaimname().data(), static_cast<int>(this->volumeclaimname().length()),
       ::google::protobuf::internal::WireFormatLite::SERIALIZE,
       "flyte.plugins.tfoperator.TFJob.volumeClaimName");
     ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->volumeclaimname(), output);
+      6, this->volumeclaimname(), output);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -976,13 +760,7 @@ void TFJob::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;
-  if (this->applicationtype() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      1, this->applicationtype(), target);
-  }
-
-  // string image = 2;
+  // string image = 1;
   if (this->image().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->image().data(), static_cast<int>(this->image().length()),
@@ -990,7 +768,12 @@ void TFJob::SerializeWithCachedSizes(
       "flyte.plugins.tfoperator.TFJob.image");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->image(), target);
+        1, this->image(), target);
+  }
+
+  // int32 num_ps = 2;
+  if (this->num_ps() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->num_ps(), target);
   }
 
   // int32 replicas = 3;
@@ -998,7 +781,18 @@ void TFJob::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->replicas(), target);
   }
 
-  // map<string, string> args = 4;
+  // string command = 4;
+  if (this->command().size() > 0) {
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+      this->command().data(), static_cast<int>(this->command().length()),
+      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
+      "flyte.plugins.tfoperator.TFJob.command");
+    target =
+      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
+        4, this->command(), target);
+  }
+
+  // map<string, string> args = 5;
   if (!this->args().empty()) {
     typedef ::google::protobuf::Map< ::std::string, ::std::string >::const_pointer
         ConstPtr;
@@ -1035,7 +829,7 @@ void TFJob::SerializeWithCachedSizes(
             items[static_cast<ptrdiff_t>(i)]->first, items[static_cast<ptrdiff_t>(i)]->second));
         target = ::google::protobuf::internal::WireFormatLite::
                    InternalWriteMessageNoVirtualToArray(
-                       4, *entry, deterministic, target);
+                       5, *entry, deterministic, target);
 ;
         Utf8Check::Check(items[static_cast<ptrdiff_t>(i)]);
       }
@@ -1048,14 +842,14 @@ void TFJob::SerializeWithCachedSizes(
             it->first, it->second));
         target = ::google::protobuf::internal::WireFormatLite::
                    InternalWriteMessageNoVirtualToArray(
-                       4, *entry, deterministic, target);
+                       5, *entry, deterministic, target);
 ;
         Utf8Check::Check(&*it);
       }
     }
   }
 
-  // string volumeClaimName = 5;
+  // string volumeClaimName = 6;
   if (this->volumeclaimname().size() > 0) {
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
       this->volumeclaimname().data(), static_cast<int>(this->volumeclaimname().length()),
@@ -1063,7 +857,7 @@ void TFJob::SerializeWithCachedSizes(
       "flyte.plugins.tfoperator.TFJob.volumeClaimName");
     target =
       ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->volumeclaimname(), target);
+        6, this->volumeclaimname(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -1083,7 +877,7 @@ size_t TFJob::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
   }
-  // map<string, string> args = 4;
+  // map<string, string> args = 5;
   total_size += 1 *
       ::google::protobuf::internal::FromIntSize(this->args_size());
   {
@@ -1097,24 +891,32 @@ size_t TFJob::ByteSizeLong() const {
     }
   }
 
-  // string image = 2;
+  // string image = 1;
   if (this->image().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->image());
   }
 
-  // string volumeClaimName = 5;
+  // string command = 4;
+  if (this->command().size() > 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::StringSize(
+        this->command());
+  }
+
+  // string volumeClaimName = 6;
   if (this->volumeclaimname().size() > 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::StringSize(
         this->volumeclaimname());
   }
 
-  // .flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;
-  if (this->applicationtype() != 0) {
+  // int32 num_ps = 2;
+  if (this->num_ps() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->applicationtype());
+      ::google::protobuf::internal::WireFormatLite::Int32Size(
+        this->num_ps());
   }
 
   // int32 replicas = 3;
@@ -1158,12 +960,16 @@ void TFJob::MergeFrom(const TFJob& from) {
 
     image_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.image_);
   }
+  if (from.command().size() > 0) {
+
+    command_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.command_);
+  }
   if (from.volumeclaimname().size() > 0) {
 
     volumeclaimname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.volumeclaimname_);
   }
-  if (from.applicationtype() != 0) {
-    set_applicationtype(from.applicationtype());
+  if (from.num_ps() != 0) {
+    set_num_ps(from.num_ps());
   }
   if (from.replicas() != 0) {
     set_replicas(from.replicas());
@@ -1196,8 +1002,9 @@ void TFJob::InternalSwap(TFJob* other) {
   using std::swap;
   args_.Swap(&other->args_);
   image_.Swap(&other->image_);
+  command_.Swap(&other->command_);
   volumeclaimname_.Swap(&other->volumeclaimname_);
-  swap(applicationtype_, other->applicationtype_);
+  swap(num_ps_, other->num_ps_);
   swap(replicas_, other->replicas_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);

@@ -59,6 +59,9 @@ func (m tfOperatorPlugin) BuildResource(ctx context.Context, taskCtx pluginsCore
 		return nil, errors.Wrapf(err, "invalid task specification for taskType [%s]", tfJobTaskType)
 	}
 
+	// Check if volume claim exists and create one if it doesn't
+	// tfJobVolumeClaim := tfJob.GetVolumeClaimName()
+
 	// annotations := utils.UnionMaps(config.GetK8sPluginConfig().DefaultAnnotations, utils.CopyMap(taskCtx.TaskExecutionMetadata().GetAnnotations()))
 	// labels := utils.UnionMaps(config.GetK8sPluginConfig().DefaultLabels, utils.CopyMap(taskCtx.TaskExecutionMetadata().GetLabels()))
 	// // If the container is part of the task template you can access it here
@@ -70,36 +73,59 @@ func (m tfOperatorPlugin) BuildResource(ctx context.Context, taskCtx pluginsCore
 	for _, envVar := range envVars {
 		tfJobEnvVars[envVar.Name] = envVar.Value
 	}
-	tfJobReplicaSpecs := make(map[tfOp.TFReplicaType]*commonOp.ReplicaSpec)
-	tfJobReplicaSpecs[tfOp.TFReplicaTypeWorker] = &commonOp.ReplicaSpec{
-		Replicas:      tfJob.GetReplicas(),
-		RestartPolicy: commonOp.RestartPolicyNever,
-		Template:      v1.PodTemplateSpec{
-			Spec: v1.PodSpec{
-				Containers: []v1.Container{
-					{
-						Name: "tensorflow",
-						Image: tfJob.GetImage(),
-						VolumeMounts: []v1.VolumeMount{
-							Name: "tfjob-volume",
-							MountPath: "/mnt/data",
-						}
-					}
-				},
-				Volumes: []v1.Volume{
-					{
+
+	// common Pod Spec Template that maps into the TF Job ReplicaSpecs for - PS, Chief, Worker
+	commonPodSpecTemplate := v1.PodTemplateSpec{
+		Spec: v1.PodSpec{
+			Containers: []v1.Container{
+				{
+					Name: "tensorflow",
+					Image: tfJob.GetImage(),
+					Command: tfJob.GetCommand(),
+					EnvVars: tfJobEnvVars,
+					Args: tfJob.GetArgs(),
+					VolumeMounts: []v1.VolumeMount{
 						Name: "tfjob-volume",
-						VolumeSource: v1.VolumeSource{
-							PersistentVolumeClaim: v1.PersistentVolumeClaimVolumeSource{
-								ClaimName: tfJob.GetVolumeClaimName(),
-								ReadOnly: false,
-							},
+						MountPath: "/mnt/data",
+					}
+				}
+			},
+			Volumes: []v1.Volume{
+				{
+					Name: "tfjob-volume",
+					VolumeSource: v1.VolumeSource{
+						PersistentVolumeClaim: v1.PersistentVolumeClaimVolumeSource{
+							ClaimName: tfJob.GetVolumeClaimName(),
+							ReadOnly: false,
 						},
 					},
 				},
 			},
 		},
 	}
+
+	tfJobReplicaSpecs := make(map[tfOp.TFReplicaType]*commonOp.ReplicaSpec)
+
+	// Adds Parameter Server spec
+	tfJobReplicaSpecs[tfOp.TFReplicaTypePS] = &commonOp.ReplicaSpec{
+		Replicas:      tfJob.GetNumPs(),
+		RestartPolicy: commonOp.RestartPolicyNever,
+		Template:   commonPodSpecTemplate,   
+	}
+	// Adds Chief spec
+	tfJobReplicaSpecs[tfOp.TFReplicaTypeChief] = &commonOp.ReplicaSpec{
+		Replicas:      tfJob.GetReplicas(),
+		RestartPolicy: commonOp.RestartPolicyNever,
+		Template:   commonPodSpecTemplate,   
+	}
+	// Adds worker spec
+	tfJobReplicaSpecs[tfOp.TFReplicaTypeWorker] = &commonOp.ReplicaSpec{
+		Replicas:      tfJob.GetReplicas(),
+		RestartPolicy: commonOp.RestartPolicyNever,
+		Template:   commonPodSpecTemplate,   
+	}
+
+	// Combine everything into the TF Job Spec
 	job := &tfOp.TFJob{
 		TypeMeta: metav1.TypeMeta{
 			Kind:       KindTfJob,

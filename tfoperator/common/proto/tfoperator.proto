@@ -10,10 +10,12 @@ message TFOperatorPluginTask {
 
 // TODO(swiftdiaries):: add resource (CPUs, Memory) requirements and accelerator (GPU) requirements 
 message TFJob {
-    string image = 2;
+    string image = 1;
+    int32 num_ps = 2;
     int32 replicas = 3;
-    map<string, string> args = 4;
-    string volumeClaimName = 5;
+    string command = 4;
+    map<string, string> args = 5;
+    string volumeClaimName = 6;
     // int32 cpu = 6;
     // int32 memory = 7;
     // int32 gpu = 8;

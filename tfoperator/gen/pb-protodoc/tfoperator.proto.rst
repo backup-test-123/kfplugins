@@ -19,66 +19,45 @@ Optional Proto for TFOperatorPlugin
 
 
 
-.. _api_msg_flyte.plugins.tfoperator.TFApplication:
-
-flyte.plugins.tfoperator.TFApplication
---------------------------------------
-
-`[flyte.plugins.tfoperator.TFApplication proto] <https://github.com/lyft/flyteidl/blob/master/protos/tfoperator.proto#L14>`_
-
-
-.. code-block:: json
-
-  {}
-
-
-
-.. _api_enum_flyte.plugins.tfoperator.TFApplication.Type:
-
-Enum flyte.plugins.tfoperator.TFApplication.Type
-------------------------------------------------
-
-`[flyte.plugins.tfoperator.TFApplication.Type proto] <https://github.com/lyft/flyteidl/blob/master/protos/tfoperator.proto#L15>`_
-
-
-.. _api_enum_value_flyte.plugins.tfoperator.TFApplication.Type.PYTHON:
-
-PYTHON
-  *(DEFAULT)* ⁣
-  
-
 .. _api_msg_flyte.plugins.tfoperator.TFJob:
 
 flyte.plugins.tfoperator.TFJob
 ------------------------------
 
-`[flyte.plugins.tfoperator.TFJob proto] <https://github.com/lyft/flyteidl/blob/master/protos/tfoperator.proto#L20>`_
+`[flyte.plugins.tfoperator.TFJob proto] <https://github.com/lyft/flyteidl/blob/master/protos/tfoperator.proto#L11>`_
 
+TODO(swiftdiaries):: add resource (CPUs, Memory) requirements and accelerator (GPU) requirements 
 
 .. code-block:: json
 
   {
-    "applicationType": "...",
     "image": "...",
+    "num_ps": "...",
     "replicas": "...",
+    "command": "...",
     "args": "{...}",
     "volumeClaimName": "..."
   }
 
-.. _api_field_flyte.plugins.tfoperator.TFJob.applicationType:
-
-applicationType
-  (:ref:`flyte.plugins.tfoperator.TFApplication.Type <api_enum_flyte.plugins.tfoperator.TFApplication.Type>`) 
-  
 .. _api_field_flyte.plugins.tfoperator.TFJob.image:
 
 image
   (`string <https://developers.google.com/protocol-buffers/docs/proto#scalar>`_) 
   
+.. _api_field_flyte.plugins.tfoperator.TFJob.num_ps:
+
+num_ps
+  (`int32 <https://developers.google.com/protocol-buffers/docs/proto#scalar>`_) 
+  
 .. _api_field_flyte.plugins.tfoperator.TFJob.replicas:
 
 replicas
   (`int32 <https://developers.google.com/protocol-buffers/docs/proto#scalar>`_) 
+  
+.. _api_field_flyte.plugins.tfoperator.TFJob.command:
+
+command
+  (`string <https://developers.google.com/protocol-buffers/docs/proto#scalar>`_) 
   
 .. _api_field_flyte.plugins.tfoperator.TFJob.args:
 

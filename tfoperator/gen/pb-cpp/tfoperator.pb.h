@@ -31,7 +31,6 @@
 #include <google/protobuf/map.h>  // IWYU pragma: export
 #include <google/protobuf/map_entry.h>
 #include <google/protobuf/map_field_inl.h>
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
@@ -40,7 +39,7 @@ namespace protobuf_tfoperator_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[4];
+  static const ::google::protobuf::internal::ParseTable schema[3];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -48,15 +47,12 @@ struct TableStruct {
 void AddDescriptors();
 void InitDefaultsTFOperatorPluginTaskImpl();
 void InitDefaultsTFOperatorPluginTask();
-void InitDefaultsTFApplicationImpl();
-void InitDefaultsTFApplication();
 void InitDefaultsTFJob_ArgsEntry_DoNotUseImpl();
 void InitDefaultsTFJob_ArgsEntry_DoNotUse();
 void InitDefaultsTFJobImpl();
 void InitDefaultsTFJob();
 inline void InitDefaults() {
   InitDefaultsTFOperatorPluginTask();
-  InitDefaultsTFApplication();
   InitDefaultsTFJob_ArgsEntry_DoNotUse();
   InitDefaultsTFJob();
 }
@@ -64,9 +60,6 @@ inline void InitDefaults() {
 namespace flyte {
 namespace plugins {
 namespace tfoperator {
-class TFApplication;
-class TFApplicationDefaultTypeInternal;
-extern TFApplicationDefaultTypeInternal _TFApplication_default_instance_;
 class TFJob;
 class TFJobDefaultTypeInternal;
 extern TFJobDefaultTypeInternal _TFJob_default_instance_;
@@ -83,26 +76,6 @@ namespace flyte {
 namespace plugins {
 namespace tfoperator {
 
-enum TFApplication_Type {
-  TFApplication_Type_PYTHON = 0,
-  TFApplication_Type_TFApplication_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  TFApplication_Type_TFApplication_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool TFApplication_Type_IsValid(int value);
-const TFApplication_Type TFApplication_Type_Type_MIN = TFApplication_Type_PYTHON;
-const TFApplication_Type TFApplication_Type_Type_MAX = TFApplication_Type_PYTHON;
-const int TFApplication_Type_Type_ARRAYSIZE = TFApplication_Type_Type_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* TFApplication_Type_descriptor();
-inline const ::std::string& TFApplication_Type_Name(TFApplication_Type value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    TFApplication_Type_descriptor(), value);
-}
-inline bool TFApplication_Type_Parse(
-    const ::std::string& name, TFApplication_Type* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<TFApplication_Type>(
-    TFApplication_Type_descriptor(), name, value);
-}
 // ===================================================================
 
 class TFOperatorPluginTask : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:flyte.plugins.tfoperator.TFOperatorPluginTask) */ {
@@ -197,122 +170,6 @@ class TFOperatorPluginTask : public ::google::protobuf::Message /* @@protoc_inse
 };
 // -------------------------------------------------------------------
 
-class TFApplication : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:flyte.plugins.tfoperator.TFApplication) */ {
- public:
-  TFApplication();
-  virtual ~TFApplication();
-
-  TFApplication(const TFApplication& from);
-
-  inline TFApplication& operator=(const TFApplication& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  #if LANG_CXX11
-  TFApplication(TFApplication&& from) noexcept
-    : TFApplication() {
-    *this = ::std::move(from);
-  }
-
-  inline TFApplication& operator=(TFApplication&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-  #endif
-  static const ::google::protobuf::Descriptor* descriptor();
-  static const TFApplication& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const TFApplication* internal_default_instance() {
-    return reinterpret_cast<const TFApplication*>(
-               &_TFApplication_default_instance_);
-  }
-  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    1;
-
-  void Swap(TFApplication* other);
-  friend void swap(TFApplication& a, TFApplication& b) {
-    a.Swap(&b);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline TFApplication* New() const PROTOBUF_FINAL { return New(NULL); }
-
-  TFApplication* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
-  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
-  void CopyFrom(const TFApplication& from);
-  void MergeFrom(const TFApplication& from);
-  void Clear() PROTOBUF_FINAL;
-  bool IsInitialized() const PROTOBUF_FINAL;
-
-  size_t ByteSizeLong() const PROTOBUF_FINAL;
-  bool MergePartialFromCodedStream(
-      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
-  void SerializeWithCachedSizes(
-      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
-  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
-      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
-  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const PROTOBUF_FINAL;
-  void InternalSwap(TFApplication* other);
-  private:
-  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
-    return NULL;
-  }
-  inline void* MaybeArenaPtr() const {
-    return NULL;
-  }
-  public:
-
-  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
-
-  // nested types ----------------------------------------------------
-
-  typedef TFApplication_Type Type;
-  static const Type PYTHON =
-    TFApplication_Type_PYTHON;
-  static inline bool Type_IsValid(int value) {
-    return TFApplication_Type_IsValid(value);
-  }
-  static const Type Type_MIN =
-    TFApplication_Type_Type_MIN;
-  static const Type Type_MAX =
-    TFApplication_Type_Type_MAX;
-  static const int Type_ARRAYSIZE =
-    TFApplication_Type_Type_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor*
-  Type_descriptor() {
-    return TFApplication_Type_descriptor();
-  }
-  static inline const ::std::string& Type_Name(Type value) {
-    return TFApplication_Type_Name(value);
-  }
-  static inline bool Type_Parse(const ::std::string& name,
-      Type* value) {
-    return TFApplication_Type_Parse(name, value);
-  }
-
-  // accessors -------------------------------------------------------
-
-  // @@protoc_insertion_point(class_scope:flyte.plugins.tfoperator.TFApplication)
- private:
-
-  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  mutable int _cached_size_;
-  friend struct ::protobuf_tfoperator_2eproto::TableStruct;
-  friend void ::protobuf_tfoperator_2eproto::InitDefaultsTFApplicationImpl();
-};
-// -------------------------------------------------------------------
-
 class TFJob_ArgsEntry_DoNotUse : public ::google::protobuf::internal::MapEntry<TFJob_ArgsEntry_DoNotUse, 
     ::std::string, ::std::string,
     ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
@@ -369,7 +226,7 @@ class TFJob : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
                &_TFJob_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    3;
+    2;
 
   void Swap(TFJob* other);
   friend void swap(TFJob& a, TFJob& b) {
@@ -417,18 +274,18 @@ class TFJob : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
   // accessors -------------------------------------------------------
 
-  // map<string, string> args = 4;
+  // map<string, string> args = 5;
   int args_size() const;
   void clear_args();
-  static const int kArgsFieldNumber = 4;
+  static const int kArgsFieldNumber = 5;
   const ::google::protobuf::Map< ::std::string, ::std::string >&
       args() const;
   ::google::protobuf::Map< ::std::string, ::std::string >*
       mutable_args();
 
-  // string image = 2;
+  // string image = 1;
   void clear_image();
-  static const int kImageFieldNumber = 2;
+  static const int kImageFieldNumber = 1;
   const ::std::string& image() const;
   void set_image(const ::std::string& value);
   #if LANG_CXX11
@@ -440,9 +297,23 @@ class TFJob : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_image();
   void set_allocated_image(::std::string* image);
 
-  // string volumeClaimName = 5;
+  // string command = 4;
+  void clear_command();
+  static const int kCommandFieldNumber = 4;
+  const ::std::string& command() const;
+  void set_command(const ::std::string& value);
+  #if LANG_CXX11
+  void set_command(::std::string&& value);
+  #endif
+  void set_command(const char* value);
+  void set_command(const char* value, size_t size);
+  ::std::string* mutable_command();
+  ::std::string* release_command();
+  void set_allocated_command(::std::string* command);
+
+  // string volumeClaimName = 6;
   void clear_volumeclaimname();
-  static const int kVolumeClaimNameFieldNumber = 5;
+  static const int kVolumeClaimNameFieldNumber = 6;
   const ::std::string& volumeclaimname() const;
   void set_volumeclaimname(const ::std::string& value);
   #if LANG_CXX11
@@ -454,11 +325,11 @@ class TFJob : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
   ::std::string* release_volumeclaimname();
   void set_allocated_volumeclaimname(::std::string* volumeclaimname);
 
-  // .flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;
-  void clear_applicationtype();
-  static const int kApplicationTypeFieldNumber = 1;
-  ::flyte::plugins::tfoperator::TFApplication_Type applicationtype() const;
-  void set_applicationtype(::flyte::plugins::tfoperator::TFApplication_Type value);
+  // int32 num_ps = 2;
+  void clear_num_ps();
+  static const int kNumPsFieldNumber = 2;
+  ::google::protobuf::int32 num_ps() const;
+  void set_num_ps(::google::protobuf::int32 value);
 
   // int32 replicas = 3;
   void clear_replicas();
@@ -477,8 +348,9 @@ class TFJob : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
       ::google::protobuf::internal::WireFormatLite::TYPE_STRING,
       0 > args_;
   ::google::protobuf::internal::ArenaStringPtr image_;
+  ::google::protobuf::internal::ArenaStringPtr command_;
   ::google::protobuf::internal::ArenaStringPtr volumeclaimname_;
-  int applicationtype_;
+  ::google::protobuf::int32 num_ps_;
   ::google::protobuf::int32 replicas_;
   mutable int _cached_size_;
   friend struct ::protobuf_tfoperator_2eproto::TableStruct;
@@ -497,29 +369,11 @@ class TFJob : public ::google::protobuf::Message /* @@protoc_insertion_point(cla
 
 // -------------------------------------------------------------------
 
-// TFApplication
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // TFJob
 
-// .flyte.plugins.tfoperator.TFApplication.Type applicationType = 1;
-inline void TFJob::clear_applicationtype() {
-  applicationtype_ = 0;
-}
-inline ::flyte::plugins::tfoperator::TFApplication_Type TFJob::applicationtype() const {
-  // @@protoc_insertion_point(field_get:flyte.plugins.tfoperator.TFJob.applicationType)
-  return static_cast< ::flyte::plugins::tfoperator::TFApplication_Type >(applicationtype_);
-}
-inline void TFJob::set_applicationtype(::flyte::plugins::tfoperator::TFApplication_Type value) {
-  
-  applicationtype_ = value;
-  // @@protoc_insertion_point(field_set:flyte.plugins.tfoperator.TFJob.applicationType)
-}
-
-// string image = 2;
+// string image = 1;
 inline void TFJob::clear_image() {
   image_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -572,6 +426,20 @@ inline void TFJob::set_allocated_image(::std::string* image) {
   // @@protoc_insertion_point(field_set_allocated:flyte.plugins.tfoperator.TFJob.image)
 }
 
+// int32 num_ps = 2;
+inline void TFJob::clear_num_ps() {
+  num_ps_ = 0;
+}
+inline ::google::protobuf::int32 TFJob::num_ps() const {
+  // @@protoc_insertion_point(field_get:flyte.plugins.tfoperator.TFJob.num_ps)
+  return num_ps_;
+}
+inline void TFJob::set_num_ps(::google::protobuf::int32 value) {
+  
+  num_ps_ = value;
+  // @@protoc_insertion_point(field_set:flyte.plugins.tfoperator.TFJob.num_ps)
+}
+
 // int32 replicas = 3;
 inline void TFJob::clear_replicas() {
   replicas_ = 0;
@@ -586,7 +454,60 @@ inline void TFJob::set_replicas(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:flyte.plugins.tfoperator.TFJob.replicas)
 }
 
-// map<string, string> args = 4;
+// string command = 4;
+inline void TFJob::clear_command() {
+  command_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline const ::std::string& TFJob::command() const {
+  // @@protoc_insertion_point(field_get:flyte.plugins.tfoperator.TFJob.command)
+  return command_.GetNoArena();
+}
+inline void TFJob::set_command(const ::std::string& value) {
+  
+  command_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:flyte.plugins.tfoperator.TFJob.command)
+}
+#if LANG_CXX11
+inline void TFJob::set_command(::std::string&& value) {
+  
+  command_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:flyte.plugins.tfoperator.TFJob.command)
+}
+#endif
+inline void TFJob::set_command(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  
+  command_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:flyte.plugins.tfoperator.TFJob.command)
+}
+inline void TFJob::set_command(const char* value, size_t size) {
+  
+  command_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:flyte.plugins.tfoperator.TFJob.command)
+}
+inline ::std::string* TFJob::mutable_command() {
+  
+  // @@protoc_insertion_point(field_mutable:flyte.plugins.tfoperator.TFJob.command)
+  return command_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* TFJob::release_command() {
+  // @@protoc_insertion_point(field_release:flyte.plugins.tfoperator.TFJob.command)
+  
+  return command_.ReleaseNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void TFJob::set_allocated_command(::std::string* command) {
+  if (command != NULL) {
+    
+  } else {
+    
+  }
+  command_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), command);
+  // @@protoc_insertion_point(field_set_allocated:flyte.plugins.tfoperator.TFJob.command)
+}
+
+// map<string, string> args = 5;
 inline int TFJob::args_size() const {
   return args_.size();
 }
@@ -604,7 +525,7 @@ TFJob::mutable_args() {
   return args_.MutableMap();
 }
 
-// string volumeClaimName = 5;
+// string volumeClaimName = 6;
 inline void TFJob::clear_volumeclaimname() {
   volumeclaimname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
 }
@@ -664,26 +585,12 @@ inline void TFJob::set_allocated_volumeclaimname(::std::string* volumeclaimname)
 
 // -------------------------------------------------------------------
 
-// -------------------------------------------------------------------
-
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace tfoperator
 }  // namespace plugins
 }  // namespace flyte
-
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::flyte::plugins::tfoperator::TFApplication_Type> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::flyte::plugins::tfoperator::TFApplication_Type>() {
-  return ::flyte::plugins::tfoperator::TFApplication_Type_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 
