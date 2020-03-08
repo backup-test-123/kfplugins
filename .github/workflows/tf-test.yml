@@ -24,4 +24,6 @@ jobs:
         echo "Installing TF-Operator"
         kubectl kustomize build github.com/CiscoAI/kf-dev/tree/master/deploy/kustomize/base/distributed-tf | kubectl apply -f -
         kubectl apply -f https://raw.githubusercontent.com/lyft/flyte/master/deployment/sandbox/flyte_generated.yaml
+    
+    #TODO(swiftdiaires): Add test for tf-operator on Flyte
 
