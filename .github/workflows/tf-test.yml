@@ -18,6 +18,10 @@ jobs:
         kubectl cluster-info
         kubectl get pods -n kube-system
     
-    # TODO(swiftdiaries): Add install step for KF Operators and Flyte
-    # - name: Install KF-Flyte
-    #   run:
+    - name: Install Flyte + TF Operator
+      run: |
+        sleep 30
+        echo "Installing TF-Operator"
+        kubectl kustomize build github.com/CiscoAI/kf-dev/tree/master/deploy/kustomize/base/distributed-tf | kubectl apply -f -
+        kubectl apply -f https://raw.githubusercontent.com/lyft/flyte/master/deployment/sandbox/flyte_generated.yaml
+
