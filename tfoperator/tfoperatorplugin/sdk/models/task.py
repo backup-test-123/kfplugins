@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from flytekit.models import common as _common
 
-from tfoperator.gen.pb_python import tfoperator_pb2 as _tf_task
+from gen.pb_python import tfoperator_pb2 as _tf_task
 
 class TFJob(_common.FlyteIdlEntity):
 

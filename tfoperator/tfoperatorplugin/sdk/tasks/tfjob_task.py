@@ -9,12 +9,10 @@ import os as _os
 import sys as _sys
 import six as _six
 import datetime as _datetime
-from flytekit.bin import spark_executor
 from flytekit.common import constants as _constants
 from flytekit.common.exceptions import scopes as _exception_scopes
 from flytekit.common.tasks import output as _task_output, sdk_runnable as _sdk_runnable
 from flytekit.common.types import helpers as _type_helpers
-from flytekit.common.tasks.
 from flytekit.models import literals as _literal_models, task as _task_models
 from tfoperatorplugin.sdk.models import task as _tfjob_model
 from google.protobuf.json_format import MessageToDict as _MessageToDict
@@ -41,7 +39,7 @@ class SdkTFJobTask(_sdk_runnable.SdkRunnableTask):
             replicas,
             command,
             args,
-            volume_claim_name,
+            volumeClaimName,
             environment
     ):
         """
@@ -62,7 +60,7 @@ class SdkTFJobTask(_sdk_runnable.SdkRunnableTask):
             replicas=replicas,
             command=command,
             args=args,
-            volumeClaimName=volume_claim_name,
+            volumeClaimName=volumeClaimName,
         ).to_flyte_idl()
         super(SdkTFJobTask, self).__init__(
             task_function,
@@ -203,7 +201,7 @@ def tf_job_task(
             replicas=replicas or {},
             command=command or {},
             args=args or {},
-            volume_claim_name=volumeClaimName or {},
+            volumeClaimName=volumeClaimName or {},
             environment=environment or {},
         )
 

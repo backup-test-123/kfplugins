@@ -11,7 +11,7 @@ setup(
     url="https://github.com/flyteorg/kfplugins",
     description='FlyteKit TF Operator plugin',
     long_description=open('README.md').read(),
-    packages=find_packages(include=("sdk*",), exclude=["tests*"]),
+    packages=find_packages(exclude=["tests*"]),
     package_data={},
     include_package_data=False,
     entry_points={'console_scripts': []},

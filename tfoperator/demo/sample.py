@@ -2,49 +2,24 @@ import json
 import os
 import sys
 from tfoperatorplugin.sdk.tasks import tfjob_task
-from flytekit.sdk.workflow import workflow_class, Input, Output
+from flytekit.sdk.workflow import workflow_class
 from flytekit.sdk.types import Types
 from flytekit.configuration import TemporaryConfiguration
 
+mnist_trainer_args = dict()
+@tfjob_task.tf_job_task(
+    image='ciscoai/mnist:3088D0CF',
+    num_ps=1,
+    replicas=2,
+    command='python /opt/model.py',
+    args=mnist_trainer_args,
+    volumeClaimName='mnist-trainer-claim')
+def mnist_trainer():
+    pass
 
 @workflow_class
 class DemoWorkflow(object):
-    # Input parameters
-    train_data = Input(Types.MultiPartCSV,
-                       help="s3 path to a flat directory of CSV files.")
-    validation_data = Input(Types.MultiPartCSV,
-                            help="s3 path to a flat directory of CSV files.")
-
-    # Node definitions
-    train_node = xgtrainer_task(
-        static_hyperparameters={
-            "eval_metric": "auc",
-            "num_round": "100",
-            "objective": "binary:logistic",
-            "rate_drop": "0.3",
-            "tweedie_variance_power": "1.4",
-        },
-        train=train_data,
-        validation=validation_data,
-    )
-    tf_job_args = dict()
-
-    # TODO(swiftdiaries): add tf_job_args
-    # tf_job_args[""]
-
-    trainer_tf = tfjob_task(image="ciscoai/mnist:3088D0CF",
-                            num_ps=1,
-                            replicas=2,
-                            command="python /opt/model.py",
-                            args=tf_job_args,
-                            volumeClaimName="tf-job-claim")
-
-    # Outputs
-    trained_model = Output(train_node.outputs.model, sdk_type=Types.Blob)
-
-    # TODO: Do other things with the resulting model! Ping Matt Smith if you'd like help expanding on this demo
-    # for a more holistic example.
-
+    mnist_task = mnist_trainer()
 
 if __name__ == '__main__':
     _PROJECT = 'demo'
@@ -56,36 +31,6 @@ if __name__ == '__main__':
     with TemporaryConfiguration(
             os.path.join(os.path.dirname(__file__), "flyte.config")):
         if sys.argv[1] == 'render_task':
-            print("Task Definition:\n\n")
-            print(tfjob_task.to_flyte_idl())
-            print("\n\n")
-        elif sys.argv[1] == 'execute':
-            if len(sys.argv) != 6:
-                print(_USAGE)
-            else:
-                try:
-                    # Register, if not already.
-                    tfjob_task.register(_PROJECT, _DOMAIN, 'tf_trainer_task',
-                                        sys.argv[2])
-                    DemoWorkflow.register(_PROJECT, _DOMAIN, 'DemoWorkflow',
-                                          sys.argv[2])
-                    lp = DemoWorkflow.create_launch_plan()
-                    lp.register(_PROJECT, _DOMAIN, 'DemoWorkflow', sys.argv[2])
-                except:
-                    print(
-                        "NOTE: If you changed anything about the task or workflow definition, you must register a "
-                        "new unique version.")
-                    raise
-                ex = lp.execute(_PROJECT,
-                                _DOMAIN,
-                                inputs={
-                                    'train_data': sys.argv[3],
-                                    'validation_data': sys.argv[4],
-                                })
-                print("Waiting for execution to complete...")
-                ex.wait_for_completion()
-                ex.sync()
-                print("Trained model is available here: {}".format(
-                    ex.outputs.trained_model.uri))
+            DemoWorkflow.validate()
         else:
             print(_USAGE)
