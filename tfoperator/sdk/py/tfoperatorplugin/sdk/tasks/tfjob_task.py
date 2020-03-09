@@ -14,24 +14,15 @@ from flytekit.common import constants as _constants
 from flytekit.common.exceptions import scopes as _exception_scopes
 from flytekit.common.tasks import output as _task_output, sdk_runnable as _sdk_runnable
 from flytekit.common.types import helpers as _type_helpers
+from flytekit.common.tasks.
 from flytekit.models import literals as _literal_models, task as _task_models
 from tfoperatorplugin.sdk.models import task as _tfjob_model
 from google.protobuf.json_format import MessageToDict as _MessageToDict
 
 
-TFJOB_TASK_TYPE = "tfoperator"
+TFJOB_TASK_TYPE = "tfjob"
 
-class SdkRunnableSparkContainer(_sdk_runnable.SdkRunnableContainer):
-
-    @property
-    def args(self):
-        """
-        :rtype: list[Text]
-        """
-        return self._args
-
-
-class SdkSparkTask(_sdk_runnable.SdkRunnableTask):
+class SdkTFJobTask(_sdk_runnable.SdkRunnableTask):
     """
     This class includes the additional logic for building a task that executes as a Spark Job.
 
@@ -45,9 +36,13 @@ class SdkSparkTask(_sdk_runnable.SdkRunnableTask):
             deprecated,
             discoverable,
             timeout,
-            spark_conf,
-            hadoop_conf,
-            environment,
+            image,
+            num_ps,
+            replicas,
+            command,
+            args,
+            volume_claim_name,
+            environment
     ):
         """
         :param task_function: Function container user code.  This will be executed via the SDK's engine.
@@ -61,18 +56,15 @@ class SdkSparkTask(_sdk_runnable.SdkRunnableTask):
         :param dict[Text, Text] hadoop_conf:
         :param dict[Text, Text] environment: [optional] environment variables to set when executing this task.
         """
-
-        spark_exec_path = _os.path.abspath(spark_executor.__file__)
-        if spark_exec_path.endswith('.pyc'):
-            spark_exec_path = spark_exec_path[:-1]
-
-        spark_job = _spark_model.SparkJob(
-            spark_conf=spark_conf,
-            hadoop_conf=hadoop_conf,
-            application_file="local://" + spark_exec_path,
-            executor_path=_sys.executable,
+        tfjob = _tfjob_model.TFJob(
+            image=image,
+            num_ps=num_ps,
+            replicas=replicas,
+            command=command,
+            args=args,
+            volumeClaimName=volume_claim_name,
         ).to_flyte_idl()
-        super(SdkSparkTask, self).__init__(
+        super(SdkTFJobTask, self).__init__(
             task_function,
             task_type,
             discovery_version,
@@ -89,13 +81,12 @@ class SdkSparkTask(_sdk_runnable.SdkRunnableTask):
             discoverable,
             timeout,
             environment,
-            _MessageToDict(spark_job),
+            _MessageToDict(tfjob),
         )
 
     @_exception_scopes.system_entry_point
-    def execute(self, context, inputs):
+    def execute(self, inputs):
         """
-        :param flytekit.engines.common.EngineContext context:
         :param flytekit.models.literals.LiteralMap inputs:
         :rtype: dict[Text, flytekit.models.common.FlyteIdlEntity]
         :returns: This function must return a dictionary mapping 'filenames' to Flyte Interface Entities.  These
@@ -114,64 +105,34 @@ class SdkSparkTask(_sdk_runnable.SdkRunnableTask):
 
         inputs_dict.update(outputs_dict)
 
-        with GlobalSparkContext():
-            _exception_scopes.user_entry_point(self.task_function)(
-                _sdk_runnable.ExecutionParameters(
-                    execution_date=context.execution_date,
-                    execution_id=context.execution_id,
-                    stats=context.stats,
-                    logging=context.logging,
-                    tmp_dir=context.working_directory
-                ),
-                GlobalSparkContext.get_spark_context(),
-                **inputs_dict
-            )
+        
+        _exception_scopes.user_entry_point(self.task_function)(
+            **inputs_dict
+        )
         return {
             _constants.OUTPUT_FILE_NAME: _literal_models.LiteralMap(
                 literals={k: v.sdk_value for k, v in _six.iteritems(outputs_dict)}
             )
         }
 
-    def _get_container_definition(
-            self,
-            environment=None,
-            **kwargs
-    ):
-        """
-        :rtype: flytekit.models.task.Container
-        """
-        return SdkRunnableSparkContainer(
-            command=[],
-            args=[
-                "execute_spark_task",
-                "--task-module",
-                self.task_module,
-                "--task-name",
-                self.task_function_name,
-                "--inputs",
-                "{{.input}}",
-                "--output-prefix",
-                "{{.outputPrefix}}"
-            ],
-            resources=_task_models.Resources(limits=[], requests=[]),
-            env=environment or {},
-            config={}
-        )
-
     def _get_kwarg_inputs(self):
-        # Trim off first two parameters as they are reserved for workflow_parameters and spark_context
-        return set(_getargspec(self.task_function).args[2:])
+        # Trim off first parameter as it is reserved for workflow_parameters
+        return set(_getargspec(self.task_function).args[1:])
 
 
-def spark_task(
+def tf_job_task(
         _task_function=None,
         cache_version='',
         retries=0,
         deprecated='',
         cache=False,
         timeout=None,
-        spark_conf=None,
-        hadoop_conf=None,
+        image='',
+        num_ps=1,
+        replicas=1,
+        command='',
+        args=dict(),
+        volumeClaimName='tfjob-claim',
         environment=None,
         cls=None
 ):
@@ -229,16 +190,20 @@ def spark_task(
     """
 
     def wrapper(fn):
-        return (cls or SdkSparkTask)(
+        return (cls or SdkTFJobTask)(
             task_function=fn,
-            task_type=SPARK_TASK_TYPE,
+            task_type=TFJOB_TASK_TYPE,
             discovery_version=cache_version,
             retries=retries,
             deprecated=deprecated,
             discoverable=cache,
             timeout=timeout or _datetime.timedelta(seconds=0),
-            spark_conf=spark_conf or {},
-            hadoop_conf=hadoop_conf or {},
+            image=image or {},
+            num_ps=num_ps or {},
+            replicas=replicas or {},
+            command=command or {},
+            args=args or {},
+            volume_claim_name=volumeClaimName or {},
             environment=environment or {},
         )
 
@@ -246,5 +211,3 @@ def spark_task(
         return wrapper(_task_function)
     else:
         return wrapper
-
-

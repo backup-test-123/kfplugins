@@ -1,30 +1,19 @@
 import json
 import os
 import sys
-from flyteexampleplugin.sdk.tasks.plugin import ExampleXGBoostTrainer
+from tfoperatorplugin.sdk.tasks import tfjob_task
 from flytekit.sdk.workflow import workflow_class, Input, Output
 from flytekit.sdk.types import Types
 from flytekit.configuration import TemporaryConfiguration
 
 
-xgtrainer_task = ExampleXGBoostTrainer(
-    resource_config={
-        "InstanceCount": 1,
-        "InstanceType": "ml.c4.large",
-        "VolumeSizeInGB": 10,
-    },
-    stopping_condition={
-        "MaxRuntimeInSeconds": 43200,
-    },
-    retries=2
-)
-
-
 @workflow_class
 class DemoWorkflow(object):
     # Input parameters
-    train_data = Input(Types.MultiPartCSV, help="s3 path to a flat directory of CSV files.")
-    validation_data = Input(Types.MultiPartCSV, help="s3 path to a flat directory of CSV files.")
+    train_data = Input(Types.MultiPartCSV,
+                       help="s3 path to a flat directory of CSV files.")
+    validation_data = Input(Types.MultiPartCSV,
+                            help="s3 path to a flat directory of CSV files.")
 
     # Node definitions
     train_node = xgtrainer_task(
@@ -38,6 +27,17 @@ class DemoWorkflow(object):
         train=train_data,
         validation=validation_data,
     )
+    tf_job_args = dict()
+
+    # TODO(swiftdiaries): add tf_job_args
+    # tf_job_args[""]
+
+    trainer_tf = tfjob_task(image="ciscoai/mnist:3088D0CF",
+                            num_ps=1,
+                            replicas=2,
+                            command="python /opt/model.py",
+                            args=tf_job_args,
+                            volumeClaimName="tf-job-claim")
 
     # Outputs
     trained_model = Output(train_node.outputs.model, sdk_type=Types.Blob)
@@ -53,10 +53,11 @@ if __name__ == '__main__':
              "\tpython sample.py render_task\n" \
              "\tpython sample.py execute <version> <train data path> <validation data path> <hyperparameter json>\n"
 
-    with TemporaryConfiguration(os.path.join(os.path.dirname(__file__), "flyte.config")):
+    with TemporaryConfiguration(
+            os.path.join(os.path.dirname(__file__), "flyte.config")):
         if sys.argv[1] == 'render_task':
             print("Task Definition:\n\n")
-            print(xgtrainer_task.to_flyte_idl())
+            print(tfjob_task.to_flyte_idl())
             print("\n\n")
         elif sys.argv[1] == 'execute':
             if len(sys.argv) != 6:
@@ -64,25 +65,27 @@ if __name__ == '__main__':
             else:
                 try:
                     # Register, if not already.
-                    xgtrainer_task.register(_PROJECT, _DOMAIN, 'xgtrainer_task', sys.argv[2])
-                    DemoWorkflow.register(_PROJECT, _DOMAIN, 'DemoWorkflow', sys.argv[2])
+                    tfjob_task.register(_PROJECT, _DOMAIN, 'tf_trainer_task',
+                                        sys.argv[2])
+                    DemoWorkflow.register(_PROJECT, _DOMAIN, 'DemoWorkflow',
+                                          sys.argv[2])
                     lp = DemoWorkflow.create_launch_plan()
                     lp.register(_PROJECT, _DOMAIN, 'DemoWorkflow', sys.argv[2])
                 except:
-                    print("NOTE: If you changed anything about the task or workflow definition, you must register a "
-                          "new unique version.")
+                    print(
+                        "NOTE: If you changed anything about the task or workflow definition, you must register a "
+                        "new unique version.")
                     raise
-                ex = lp.execute(
-                    _PROJECT,
-                    _DOMAIN,
-                    inputs={
-                        'train_data': sys.argv[3],
-                        'validation_data': sys.argv[4],
-                    }
-                )
+                ex = lp.execute(_PROJECT,
+                                _DOMAIN,
+                                inputs={
+                                    'train_data': sys.argv[3],
+                                    'validation_data': sys.argv[4],
+                                })
                 print("Waiting for execution to complete...")
                 ex.wait_for_completion()
                 ex.sync()
-                print("Trained model is available here: {}".format(ex.outputs.trained_model.uri))
+                print("Trained model is available here: {}".format(
+                    ex.outputs.trained_model.uri))
         else:
             print(_USAGE)
